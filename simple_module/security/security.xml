@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="simple_module_category" model="ir.module.category">
+        <field name="name">Módulo simple</field>
+        <field name="description">Categoría módulo simple</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_custom" model="res.groups">
+        <field name="name">Usuario</field>
+        <field name="category_id" ref="simple_module_category"/>
+        <field name="comment">Texto describiendo el grupo</field>
+   </record> 
+</odoo>

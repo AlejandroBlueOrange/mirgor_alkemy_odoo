@@ -1,0 +1,7 @@
+
+<menuitem
+    id='wizard_simple_menu'
+    name='Wizard'
+    parent='menu_simple_model'
+    action='wizard_simple_action'
+/>

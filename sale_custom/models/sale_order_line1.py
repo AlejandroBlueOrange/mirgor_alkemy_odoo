@@ -16,41 +16,34 @@
 #
 ##############################################################################
 
-{
+from odoo import models, fields, api
 
-    'name': 'Módulo simple',
 
-    'version': '1.0.0',
+class SaleOrderLine(models.Model):
+    _name = 'sale.order.line1'
+    _description = 'Sale Order Line 1'
 
-    'category': '',
+    product_id = fields.Many2one(
+        comodel_name='product.product'
+    )
+    name = fields.Char(
 
-    'summary': '',
+    )
 
-    'author': 'BLUEORANGE GROUP S.R.L. (www.blueorange.com.ar) / NEXIT',
+    sale_order_id = fields.Many2one(
+        comodel_name='sale.order',
+        ondelete='cascade',
+        auto_join=True,
+        check_company=True
+    )
 
-    'website': 'https://www.nexit.com.uy',
-
-    'license': 'AGPL-3',
-
-    'depends': [
-        'base'
-    ],
-
-    'data': [
-      'security/security.xml',
-      'security/ir.model.access.csv',
-      'views/simple_model.xml'
-    ],
-
-    'installable': True,
-
-    'auto_install': False,
-
-    'application': True,
-
-    'description': '''
-    ''',
-
-}
+    #sale_order_client_id = fields.Many2one(
+    #    related='sale_order_id.partner_id',
+    #    readonly=False
+    #)
+    sale_client_order_ref = fields.Char(
+        related='sale_order_id.client_order_ref',
+        readonly=False
+    )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

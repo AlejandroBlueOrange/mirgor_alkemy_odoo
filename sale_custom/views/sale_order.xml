@@ -1,0 +1,39 @@
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_custom_form">
+        <field name="name">sale_order_custom_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!--<xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="custom_groups_field"/>
+                <field name="custom_inv_read_field" attrs="{'invisible': [('is_not_group_proforma_sales', '=', False)], 'readonly': [('is_not_group_proforma_sales', '=', False)]}"/>
+                <field name="is_not_group_proforma_sales" invisible="1"/>
+            </xpath>-->
+
+            <!--<field name="sale_order_template_id" position="after">
+                <field name="custom_groups_field"/>
+                <field name="custom_inv_read_field" attrs="{'invisible': [('is_not_group_proforma_sales', '=', False)], 'readonly': [('is_not_group_proforma_sales', '=', False)]}"/>
+                <field name="is_not_group_proforma_sales" invisible="1"/>
+            </field>-->
+
+            <field name="order_line" position="after">
+                <field name="sale_order_line1_ids">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="name"/>
+                        <field name="sale_client_order_ref"/>
+                    </tree>
+                </field>
+
+                <field name="sale_order_line1_m2m_ids">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="name"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+</odoo>

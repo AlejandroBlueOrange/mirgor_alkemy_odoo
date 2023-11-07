@@ -16,41 +16,34 @@
 #
 ##############################################################################
 
-{
+from odoo import models, fields, api
 
-    'name': 'Módulo simple',
 
-    'version': '1.0.0',
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
-    'category': '',
+    custom_groups_field = fields.Char(string="Campo con groups", groups="sales_team.group_sale_manager")  
+    
+    custom_inv_read_field = fields.Char(string="Campo con invisible y readonly")
 
-    'summary': '',
+    is_not_group_proforma_sales = fields.Boolean(
+        compute="compute_is_not_group_proforma_sales",
+    )
 
-    'author': 'BLUEORANGE GROUP S.R.L. (www.blueorange.com.ar) / NEXIT',
+    sale_order_line1_ids = fields.One2many(
+        comodel_name='sale.order.line1',
+        inverse_name='sale_order_id'
+    )
 
-    'website': 'https://www.nexit.com.uy',
+    sale_order_line1_m2m_ids = fields.Many2many(
+        comodel_name='sale.order.line1',
+        relation='sale_order_line1_sale_order',
+        column1='sale_order_id',
+        comlumn2='sale_order_line1_id'
+    )
 
-    'license': 'AGPL-3',
-
-    'depends': [
-        'base'
-    ],
-
-    'data': [
-      'security/security.xml',
-      'security/ir.model.access.csv',
-      'views/simple_model.xml'
-    ],
-
-    'installable': True,
-
-    'auto_install': False,
-
-    'application': True,
-
-    'description': '''
-    ''',
-
-}
+    def compute_is_not_group_proforma_sales(self):
+        for rec in self:
+            rec.is_not_group_proforma_sales = not self.user_has_groups('sale.group_proforma_sales')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

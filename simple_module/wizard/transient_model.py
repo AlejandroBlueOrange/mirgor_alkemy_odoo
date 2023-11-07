@@ -16,41 +16,15 @@
 #
 ##############################################################################
 
-{
+from odoo import models, fields, api
 
-    'name': 'Módulo simple',
 
-    'version': '1.0.0',
+class Wizard(models.TransientModel):
+    _name = 'wizard.simple'
+    _description = 'Wizard Simple'
+    
+    
+    desc =  fields.Char(string="Desc", default="Desc")
 
-    'category': '',
-
-    'summary': '',
-
-    'author': 'BLUEORANGE GROUP S.R.L. (www.blueorange.com.ar) / NEXIT',
-
-    'website': 'https://www.nexit.com.uy',
-
-    'license': 'AGPL-3',
-
-    'depends': [
-        'base'
-    ],
-
-    'data': [
-      'security/security.xml',
-      'security/ir.model.access.csv',
-      'views/simple_model.xml'
-    ],
-
-    'installable': True,
-
-    'auto_install': False,
-
-    'application': True,
-
-    'description': '''
-    ''',
-
-}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

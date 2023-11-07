@@ -25,4 +25,27 @@ class SimpleModel(models.Model):
     
     name = fields.Char(string='Name', help='This is a record name', required=True, default=lambda x: 'Name', index=True)
 
+    def return_name(self):
+        return self.name
+
+class InheritSimpleModel(models.Model):
+    _inherit = 'simple.model'
+    
+    name = fields.Char(default=lambda x: 'Inherit Name')
+
+    def return_name(self):
+        res =  super().return_name()
+        return res + "X"
+    
+
+class ClassicInheritSimpleModel(models.Model):
+    _inherit = 'simple.model'
+    _name = 'simple.model.inherit'
+    
+    name = fields.Char(default=lambda x: 'Inherit Name')
+
+    def return_name(self):
+        res =  super().return_name()
+        return res + "X"
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

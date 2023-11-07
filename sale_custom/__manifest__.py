@@ -18,11 +18,11 @@
 
 {
 
-    'name': 'Módulo simple',
+    'name': 'Sale Custom',
 
-    'version': '1.0.0',
+    'version': '1.0',
 
-    'category': '',
+    'category': 'Sale',
 
     'summary': '',
 
@@ -33,20 +33,19 @@
     'license': 'AGPL-3',
 
     'depends': [
-        'base'
+        'sale'
     ],
 
     'data': [
-      'security/security.xml',
       'security/ir.model.access.csv',
-      'views/simple_model.xml'
+      'views/sale_order.xml'
     ],
 
     'installable': True,
 
     'auto_install': False,
 
-    'application': True,
+    'application': False,
 
     'description': '''
     ''',
