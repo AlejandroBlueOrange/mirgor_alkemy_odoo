@@ -48,7 +48,15 @@ class SaleOrder(models.Model):
 
     @api.model
     def custom_method(self):
+        # En este método no nos interesa el contenido de self, por eso usamos api.model
         return self.search([], limit=10)
+    
+    def custom_method1(self):
+        # En este método nos interesa el contenido de self, por eso no usamos api.model
+        ids = []
+        for rec in self:
+            ids.append(rec.id)
+        return ids
 
     @api.model
     def default_get(self, fields_list):
