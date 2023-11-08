@@ -46,4 +46,24 @@ class SaleOrder(models.Model):
         for rec in self:
             rec.is_not_group_proforma_sales = not self.user_has_groups('sale.group_proforma_sales')
 
+    @api.model
+    def custom_method(self):
+        return self.search([], limit=10)
+
+    @api.model
+    def default_get(self, fields_list):
+        defaults = super().default_get(fields_list)
+        defaults['custom_groups_field'] = 'default_value'
+        return defaults
+    
+    def sale_wizard_example_action(self):
+        return {
+            'name': 'Sale Wizard Example',
+            'view_mode': 'form',
+            'res_model': 'sale.wizard.example',
+            'type': 'ir.actions.act_window',
+            'context': {'default_sale_order_id': self.id, 'default_description': self.client_order_ref},
+            'target': 'new'
+        }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

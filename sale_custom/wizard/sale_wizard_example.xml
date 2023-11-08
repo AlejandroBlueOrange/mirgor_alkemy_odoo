@@ -1,0 +1,27 @@
+<odoo>
+
+    <record model="ir.ui.view" id="sale_wizard_example_form">
+        <field name="name">sale_wizard_example_form</field>
+        <field name="model">sale.wizard.example</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                
+                    <group string="Sale Wizard Example">
+                        
+                        <field name="res_partner_id"/>
+                        <field name="sale_order_id"/>
+                        <field name="description"/>
+    
+                    </group>
+                
+                </sheet>
+                <footer>
+                    <button name="change_sale_order_state" string="Change Sale Order State" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

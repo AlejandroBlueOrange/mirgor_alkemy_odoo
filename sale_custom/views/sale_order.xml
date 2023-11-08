@@ -11,11 +11,15 @@
                 <field name="is_not_group_proforma_sales" invisible="1"/>
             </xpath>-->
 
-            <!--<field name="sale_order_template_id" position="after">
+            <xpath expr="//button[@name='action_draft']" position="after">
+                <button name="sale_wizard_example_action" type="object" string="Sale Wizard Example"/>
+            </xpath>
+
+            <field name="client_order_ref" position="after">
                 <field name="custom_groups_field"/>
                 <field name="custom_inv_read_field" attrs="{'invisible': [('is_not_group_proforma_sales', '=', False)], 'readonly': [('is_not_group_proforma_sales', '=', False)]}"/>
                 <field name="is_not_group_proforma_sales" invisible="1"/>
-            </field>-->
+            </field>
 
             <field name="order_line" position="after">
                 <field name="sale_order_line1_ids">

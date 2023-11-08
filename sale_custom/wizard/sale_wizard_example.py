@@ -16,41 +16,26 @@
 #
 ##############################################################################
 
-{
+from odoo import models, fields, api
 
-    'name': 'Sale Custom',
 
-    'version': '1.0',
+class SaleWizardExample(models.TransientModel):
+    _name = 'sale.wizard.example'
+    _description = 'Sale Wizard Example'
+    
+    res_partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Alquilado/Comprado por',
+        required=True,
+    )
+    sale_order_id = fields.Many2one(
+        comodel_name='sale.order',
+        string='Orden de venta',
+        required=True,
+    )
+    description = fields.Char()
 
-    'category': 'Sale',
-
-    'summary': '',
-
-    'author': 'BLUEORANGE GROUP S.R.L. (www.blueorange.com.ar) / NEXIT',
-
-    'website': 'https://www.nexit.com.uy',
-
-    'license': 'AGPL-3',
-
-    'depends': [
-        'sale'
-    ],
-
-    'data': [
-      'security/ir.model.access.csv',
-      'views/sale_order.xml',
-      'wizard/sale_wizard_example.xml',
-    ],
-
-    'installable': True,
-
-    'auto_install': False,
-
-    'application': False,
-
-    'description': '''
-    ''',
-
-}
+    def change_sale_order_state(self):
+        self.sale_order_id.write({'partner_id': self.res_partner_id.id, 'state': 'draft'})
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
