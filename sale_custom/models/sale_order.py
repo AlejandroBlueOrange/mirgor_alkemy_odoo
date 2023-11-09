@@ -73,5 +73,16 @@ class SaleOrder(models.Model):
             'context': {'default_sale_order_id': self.id, 'default_description': self.client_order_ref},
             'target': 'new'
         }
+    
+    def sale_order_to_json(self):
+        sale_orders = []
+        for rec in self:
+            sale_orders.append({
+                'id': rec.id,
+                'name': rec.name,
+                'partner_id': rec.partner_id.id,
+                'lines': [{'id': l.id, 'product_id': l.product_id.id, 'description': l.name} for l in rec.order_line]
+            })
+        return sale_orders
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
