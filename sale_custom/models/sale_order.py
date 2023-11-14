@@ -22,9 +22,9 @@ from odoo import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    custom_groups_field = fields.Char(string="Campo con groups", groups="sales_team.group_sale_manager")  
+    custom_groups_field_1 = fields.Char(string="Campo con groups", groups="sales_team.group_sale_manager")  
     
-    custom_inv_read_field = fields.Char(string="Campo con invisible y readonly")
+    custom_inv_read_field_1 = fields.Integer(string="Campo con invisible y readonly")
 
     is_not_group_proforma_sales = fields.Boolean(
         compute="compute_is_not_group_proforma_sales",
@@ -61,7 +61,7 @@ class SaleOrder(models.Model):
     @api.model
     def default_get(self, fields_list):
         defaults = super().default_get(fields_list)
-        defaults['custom_groups_field'] = 'default_value'
+        defaults['custom_groups_field_1'] = 'default_value'
         return defaults
     
     def sale_wizard_example_action(self):
